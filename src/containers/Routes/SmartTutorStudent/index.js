@@ -148,7 +148,7 @@ class SmartTutorStudent extends Component {
                 </Col>
                 <Col span={16} offset={4}>
                     <Row justify="space-between" align="middle">
-                        <Col span={8}>
+                        <Col span={12}>
                             <Select
                                 className="select-search"
                                 showSearch
@@ -170,7 +170,7 @@ class SmartTutorStudent extends Component {
                                 }
                             </Select>
                         </Col>
-                        <Col span={8}>
+                        <Col span={12}>
                             <Select
                                 className="select-search"
                                 showSearch
