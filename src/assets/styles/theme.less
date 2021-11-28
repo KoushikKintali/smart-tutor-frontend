@@ -1,0 +1,101 @@
+// general
+@primary-color :rgb(234,76,138);
+@link-color :#0086e6;
+@heading-color: rgb(33,33,33);
+@background-color-base: rgb(255,255,255); 
+
+// Layout
+@layout-body-background : rgb(255,255,255);
+@layout-header-background: @layout-body-background;
+@layout-footer-background: rgb(3, 24, 55);
+
+
+@font-family:'Campton';
+@font-size-base: 16pt;
+@font-size-lg: @font-size-base + 2pt;
+@font-size-sm: 14pt;
+@heading-1-size: ceil(@font-size-base + 16pt);
+@heading-2-size: ceil(@font-size-base + 8pt);
+@heading-3-size: ceil(@font-size-base + 2pt);
+@heading-4-size: ceil(@font-size-base - 2pt);
+@heading-5-size: ceil(@font-size-base - 4pt);
+
+.ant-layout-footer{
+    padding: 4% 5%;
+}
+.ant-layout-header{
+    padding: 0% 4%;
+}
+
+a.ant-typography{
+    font-size: 14pt;
+    line-height: 1.4;
+}
+
+.ant-input{
+    height: 48pt;
+    border-radius: 12pt;
+    font-size: 14pt;
+    padding:12pt 14pt 0pt 14pt;
+}
+label.label{
+    font-size:11pt;
+}
+.ant-image{
+    display:flex;
+}
+textarea.ant-input{
+    padding:24pt 14pt 0pt 14pt;
+}
+h1.ant-typography, h2.ant-typography, h3.ant-typography, h4.ant-typography, h5.ant-typography, h6.ant-typography, div.ant-typography {
+    font-weight: 400;
+    display: inline;
+    color:inherit;
+    margin:0;
+}
+h5{
+    margin:0;
+}
+.ant-divider{
+    border-top: none;
+    margin:10pt 0;
+}
+.anticon{
+    margin:0 2pt;
+}
+@media screen and (max-width: 768px) {
+    body{
+        font-size: 12pt
+    }
+    h4.ant-typography{
+        font-size: 10pt;
+    }
+    h3.ant-typography {
+        font-size: 14pt;
+    }
+
+    .ant-btn{
+        height:42pt;
+        padding:0pt 14pt;
+        border-radius:6pt;
+        font-size:10pt;
+    }
+}
+  
+@media screen and (min-width: 769px) {
+    .ant-btn{
+        height:48pt;
+        padding:0pt 24pt;
+        border-radius:6pt;
+        font-size:14pt;
+    }
+    .ant-btn-sm{
+        height:30pt;
+        padding:0pt 14pt;
+        font-size:10pt;
+    }
+}
+.ant-btn{
+    font-weight:600;
+    box-shadow: 0pt 0pt 10pt 0pt rgba(0,0,0,0.2);
+}
