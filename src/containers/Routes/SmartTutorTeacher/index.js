@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import {Layout, Row, Col, Select, Button, Modal} from 'antd'
 import {Recorder} from 'react-voice-recorder'
-import { Document } from 'react-pdf/dist/esm/entry.webpack';
 import history from '../../../containers/Decider/History'
 import { ArrowLeftOutlined, PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons'
 import { TEACHER_API_RESULT } from 'Config/deploymentConfig/mock.js'
+import 'antd/dist/antd.css';
 import 'react-voice-recorder/dist/index.css'
 import './_index.less'
+const { Option } = Select;
 class SmartTutorTeacher extends Component {
     constructor(props) {
         super(props)
@@ -135,7 +136,7 @@ class SmartTutorTeacher extends Component {
             <Layout>
                 <Col span={24}>
                     <Row className="header">
-                        <ArrowLeftOutlined style={{fontSize : '10px', marginTop: '12px', marginRight: '12px'}} onClick={ () => {history.push('/student-app-home')}}/>
+                        <ArrowLeftOutlined style={{fontSize : '10px', marginTop: '12px', marginRight: '12px'}} onClick={ () => {history.push('/teacher-app-home')}}/>
                         <h5>Smart Tutor</h5>
                     </Row>
                 </Col>
@@ -214,59 +215,34 @@ class SmartTutorTeacher extends Component {
                     <Row className="pdf-container" justify="space-between" align="middle">
                     {
                         synopObj ?
-                        <Document
-                            file={synopObj.synopsis[0].content}
-                        >
-                        </Document> : null
+                        <iframe className="pdf-view" src={synopObj.synopsis[0].content}></iframe>
+                         : null
                     }
                     </Row>
                 </Col>
                 <Col span={22} offset={1}>
-                    <Row className="audio-container" justify="end" align="middle">
-                        {
-                            synopObj && synopObj.synopsis[0].synopsisBlobs.map(audioObj => {
-                                return (
-                                    <Row>
-                                        <audio key={audioObj.id} id={audioObj.id}>
-                                            <source type="audio/mp3" src={audioObj.link} />
-                                        </audio>
-                                        {
-                                            activeAudioId === audioObj.id ? 
-                                            <PauseCircleOutlined onClick={()=>{this.handlePauseAudioClick(audioObj.id)}}/> 
-                                            : <PlayCircleOutlined onClick={()=>{this.handlePlayAudioClick(audioObj.id)}}></PlayCircleOutlined>
-                                        }
-                                    </Row>
-                                )
-                            })
-                        }
-                    </Row>
-                </Col>
-                <Col span={20} offset={2}>
-                    {
-                        synopObj && <Row className="recorder-row">
-                        <Button onClick={()=> this.setState({openRecordingModal : true})}>Record new summary</Button>
-                        <Modal
-                            footer={null} 
-                            visible={openRecordingModal}
-                            onCancel={()=> this.setState({openRecordingModal : false})}>
-                            <Row className="recorder" justify="center">
-                                <Recorder
-                                    record={true}
-                                    audioURL={audioDetails.url}
-                                    showUIAudio
-                                    handleCountDown={data => this.handleCountDown()}
-                                    handleAudioStop={data => this.handleAudioStop(data)}
-                                    handleAudioUpload={data => this.handleAudioUpload(data)}
-                                    handleReset={() => this.handleReset()}
-                                    mimeTypeToUseWhenRecording={`audio/webm`}
-                                />
+                    <Row justify="space-between" align="middle">
+                        <Col span={12}>
+                            <Row className="audio-container" justify="start" align="middle">
                                 {
-                                   recording ? <img className="recording-gif" width="100%" src={require('Images/record.gif')}/> : null
+                                    synopObj && synopObj.synopsis[0].synopsisBlobs.map(audioObj => {
+                                        return (
+                                            <Row>
+                                                <audio key={audioObj.id} id={audioObj.id}>
+                                                    <source type="audio/mp3" src={audioObj.link} />
+                                                </audio>
+                                                {
+                                                    activeAudioId === audioObj.id ? 
+                                                    <PauseCircleOutlined className="pause-button" onClick={()=>{this.handlePauseAudioClick(audioObj.id)}}/> 
+                                                    : <PlayCircleOutlined className="play-button" onClick={()=>{this.handlePlayAudioClick(audioObj.id)}}></PlayCircleOutlined>
+                                                }
+                                            </Row>
+                                        )
+                                    })
                                 }
                             </Row>
-                        </Modal>
+                        </Col>
                     </Row>
-                    }
                 </Col>
             </Layout>
         );

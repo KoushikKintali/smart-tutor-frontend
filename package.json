@@ -26,9 +26,10 @@
   "dependencies": {
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "@mikecousins/react-pdf": "^5.5.1",
     "antd": "^4.9.2",
     "audio-react-recorder": "^1.0.4",
-    "axios": "^0.19.0",
+    "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "file-loader": "^4.2.0",
     "history": "^4.9.0",

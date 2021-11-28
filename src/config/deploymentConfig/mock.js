@@ -19,7 +19,7 @@ export const TEACHER_API_RESULT = {
                       "synopsis":[
                          {
                             "id":1,
-                            "content":"http://www.pdf995.com/samples/pdf.pdf",
+                            "content":"Pdfs/6.pdf",
                             "subject_chapter_id":1,
                             "synopsisBlobs":[
                                {
@@ -47,7 +47,7 @@ export const TEACHER_API_RESULT = {
                       "synopsis":[
                          {
                             "id":2,
-                            "content":"http://www.africau.edu/images/default/sample.pdf",
+                            "content":"Pdfs/7.pdf",
                             "subject_chapter_id":2,
                             "synopsisBlobs":[
                                {
@@ -82,7 +82,7 @@ export const TEACHER_API_RESULT = {
                       "synopsis":[
                          {
                             "id":3,
-                            "content":"http://www.africau.edu/images/default/sample.pdf",
+                            "content":"Pdfs/nursery.pdf",
                             "subject_chapter_id":3,
                             "synopsisBlobs":[
                                {
