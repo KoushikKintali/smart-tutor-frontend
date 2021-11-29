@@ -7,8 +7,8 @@ class StudentAppHome extends Component {
     render() {
         return (
             <Layout>
-                <img width="100%" src={require('Images/studentAppHome.jpeg')}/>
-                <Button onClick={() => {history.push('/smart-tutor-student')}} className="nav-button">Smart Tutor</Button> 
+                <img width="100%" src={require('Images/image.png')}/>
+                {/* <Button className="nav-button" onClick={() => {history.push('/smart-tutor-student')}}>Smart Tutor</Button>  */}
             </Layout>
         );
     }

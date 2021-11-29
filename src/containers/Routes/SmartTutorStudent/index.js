@@ -3,7 +3,7 @@ import {Layout, Row, Col, Select, Button, Modal} from 'antd'
 import {Recorder} from 'react-voice-recorder'
 import history from '../../../containers/Decider/History'
 import { ArrowLeftOutlined, PlayCircleOutlined, PauseCircleOutlined } from '@ant-design/icons'
-import { TEACHER_API_RESULT } from 'Config/deploymentConfig/mock.js'
+import { STUDENT_API_RESULT } from 'Config/deploymentConfig/mock.js'
 import 'antd/dist/antd.css';
 import 'react-voice-recorder/dist/index.css'
 import './_index.less'
@@ -60,7 +60,9 @@ class SmartTutorStudent extends Component {
     }
     
     handleAudioUpload(file) {
-        console.log(file);
+        this.setState({
+            openRecordingModal : false
+        })
     }
     
     handleReset() {
@@ -96,7 +98,7 @@ class SmartTutorStudent extends Component {
         this.setState({
             selectedUnitId: value
         },() => {
-            let synopsis = TEACHER_API_RESULT.schoolClasses.find(classObj => classObj.id === selectedClassId)?.classSubjects.find(
+            let synopsis = STUDENT_API_RESULT.classSubjects.find(
                 subObj => subObj.id === selectedSubjectId)?.subjectChapters.find(chapterObj => chapterObj.id === value);
             this.setState({
                 synopObj : null
@@ -164,7 +166,7 @@ class SmartTutorStudent extends Component {
                                 onChange={(value) => this.handleSubjectChange(value)}
                             >
                                 {
-                                    TEACHER_API_RESULT.schoolClasses.find(classObj => classObj.id === selectedClassId)?.classSubjects.map((subjectObj) => {
+                                    STUDENT_API_RESULT.classSubjects.map((subjectObj) => {
                                         return (<Option key={subjectObj.id} value={subjectObj.id}>{subjectObj.name}</Option>)
                                     })
                                 }
@@ -186,7 +188,7 @@ class SmartTutorStudent extends Component {
                                 onChange={(value) => this.handleUnitChange(value)}
                             >
                                 {
-                                    TEACHER_API_RESULT.schoolClasses.find(classObj => classObj.id === selectedClassId)?.classSubjects.find(
+                                    STUDENT_API_RESULT.classSubjects.find(
                                         subObj => subObj.id === selectedSubjectId)?.subjectChapters.map((chapterObj) => {
                                         return (<Option key={chapterObj.id} value={chapterObj.id}>{chapterObj.name}</Option>)
                                     })
@@ -225,34 +227,6 @@ class SmartTutorStudent extends Component {
                                     })
                                 }
                             </Row>
-                        </Col>
-                        <Col cpan={12}>
-                        {
-                                synopObj && 
-                            <Row className="recorder-row">
-                                <Button onClick={()=> this.setState({openRecordingModal : true})}>Record</Button>
-                                <Modal
-                                    footer={null} 
-                                    visible={openRecordingModal}
-                                    onCancel={()=> this.setState({openRecordingModal : false})}>
-                                    <Row className="recorder" justify="center">
-                                        <Recorder
-                                            record={true}
-                                            audioURL={audioDetails.url}
-                                            showUIAudio
-                                            handleCountDown={data => this.handleCountDown()}
-                                            handleAudioStop={data => this.handleAudioStop(data)}
-                                            handleAudioUpload={data => this.handleAudioUpload(data)}
-                                            handleReset={() => this.handleReset()}
-                                            mimeTypeToUseWhenRecording={`audio/webm`}
-                                        />
-                                        {
-                                        recording ? <img className="recording-gif" width="100%" src={require('Images/record.gif')}/> : null
-                                        }
-                                    </Row>
-                                </Modal>
-                            </Row>
-                        }
                         </Col>
                     </Row>
                 </Col>

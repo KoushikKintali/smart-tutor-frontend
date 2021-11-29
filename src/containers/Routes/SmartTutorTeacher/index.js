@@ -54,7 +54,9 @@ class SmartTutorTeacher extends Component {
     }
     
     handleAudioUpload(file) {
-        console.log(file);
+        this.setState({
+            openRecordingModal : false
+        })
     }
     
     handleReset() {
@@ -242,7 +244,38 @@ class SmartTutorTeacher extends Component {
                                 }
                             </Row>
                         </Col>
+                        <Col cpan={12}>
+                        {
+                                synopObj && 
+                            <Row className="recorder-row">
+                                <Button onClick={()=> this.setState({openRecordingModal : true})}>Record</Button>
+                                <Modal
+                                    footer={null} 
+                                    visible={openRecordingModal}
+                                    onCancel={()=> this.setState({openRecordingModal : false})}>
+                                    <Row className="recorder" justify="center">
+                                        <Recorder
+                                            record={true}
+                                            audioURL={audioDetails.url}
+                                            showUIAudio
+                                            handleCountDown={data => this.handleCountDown()}
+                                            handleAudioStop={data => this.handleAudioStop(data)}
+                                            handleAudioUpload={data => this.handleAudioUpload(data)}
+                                            handleReset={() => this.handleReset()}
+                                            mimeTypeToUseWhenRecording={`audio/webm`}
+                                        />
+                                        {
+                                        recording ? <img className="recording-gif" width="100%" src={require('Images/record.gif')}/> : null
+                                        }
+                                    </Row>
+                                </Modal>
+                            </Row>
+                        }
+                        </Col>
                     </Row>
+                </Col>
+                <Col span={20} offset={2}>
+                    
                 </Col>
             </Layout>
         );
